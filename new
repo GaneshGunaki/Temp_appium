@@ -1,0 +1,100 @@
+import org.testng.annotations.Test;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
+import pageObjects.ebayHomePage;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecuteResultHandler;
+import org.apache.commons.exec.DefaultExecutor;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.TouchActions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
+public class NewTest {
+  
+
+		
+		AppiumDriver<WebElement> driver;
+
+		@BeforeClass
+		public void setUp() throws MalformedURLException{
+
+//			CommandLine command = new CommandLine("cmd");
+//			command.addArgument("/c");
+//			command.addArgument("C:\\Program Files\\nodejs\\node.exe");
+//			command.addArgument("C:\\Users\\gyan.gyan\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js");
+//			command.addArgument("--address");
+//			command.addArgument("127.0.0.1");
+//			command.addArgument("--port");
+//			command.addArgument("4723");
+//			command.addArgument("--command-timeout");
+//			command.addArgument("120000");
+//			//GR:17-04-2017 Changes to OverCome UnReachable browserExection		
+//			//	command.addArgument("--session-override");
+//
+//			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+//			DefaultExecutor executor = new DefaultExecutor();
+//			executor.setExitValue(1);
+//			try 
+//			{
+//				Thread.sleep(20000);
+//				executor.execute(command, resultHandler);
+//				Thread.sleep(20000);
+//				
+//			}
+//			catch(IOException Exc){
+//				Exc.printStackTrace();
+//
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+
+			System.out.println("Started Appium server");
+			//Set up desired capabilities and pass the Android app-activity and app-package to Appium
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			capabilities.setCapability("automationName", "Appium");
+			capabilities.setCapability("platformName", "Android");
+			capabilities.setCapability("platformVersion", "7.1.1");
+			capabilities.setCapability("deviceName", "ZH33L2P6RS");// 3100429cc9026200
+			capabilities.setCapability("appPackage","com.ebay.mobile" );
+			capabilities.setCapability("appActivity","com.ebay.mobile.activities.MainActivity" );
+			capabilities.setCapability("newCommandTimeout", 1200000);
+			capabilities.setCapability("fullReset", true);
+
+			capabilities.setCapability("app", System.getProperty("user.dir") +"//apk//eBay.apk");
+		//	capabilities.setCapability("app", "D://appium_New//New_EclipseProjects//Appium_Ebay-master_Ebay_Mobile2//eBay.apk");
+		 //  driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		   driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		}
+
+		@Test
+		public void testCal() throws Exception {
+		   //locate the Text on the calculator by using By.name()
+			ebayHomePage ebayHomePage =new ebayHomePage(driver);
+			ebayHomePage.Android_EbayHome_NavigationBar.click();
+
+		}
+
+		@AfterClass
+		public void teardown(){
+			//close the app
+	//		driver.quit();
+		
+		}
+}
+
+
+
+
+
