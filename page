@@ -1,0 +1,33 @@
+package pageObjects;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.iOSFindBy;
+
+public class ebayHomePage {
+
+	
+	@iOSFindBy(id = "com.ebay.mobile:id/home")
+	@AndroidFindBy( id = "com.ebay.mobile:id/home")
+	public WebElement Android_EbayHome_NavigationBar;
+
+	@AndroidFindBy( id = "com.ebay.mobile:id/refresh")
+	public WebElement Android_EbayHome_NavigationBar2;
+		
+	
+	
+	// This is a constructor, as every page need a base driver to find web
+	// elements
+
+	public ebayHomePage(AppiumDriver<WebElement> driver) {
+		
+		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+
+	}
+
+	
+}
